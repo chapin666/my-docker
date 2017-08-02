@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	cmd := exec.Command("sh")
+	cmd := exec.Command("bash")
 	cmd.SysProcAttr = &syscall.SysProcAttr{
 		Cloneflags: syscall.CLONE_NEWUTS | syscall.CLONE_NEWIPC | syscall.CLONE_NEWPID | syscall.CLONE_NEWNS | syscall.CLONE_NEWUSER,
 	}
