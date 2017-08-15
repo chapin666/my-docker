@@ -1,12 +1,13 @@
 package main
 
 import (
+	"os"
+	"strings"
+
 	log "github.com/Sirupsen/logrus"
 	"github.com/my-docker/v2/cgroups"
 	"github.com/my-docker/v2/cgroups/subsystems"
 	"github.com/my-docker/v2/container"
-	"os"
-	"strings"
 )
 
 /*func Run(tty bool, command string) {
@@ -29,7 +30,6 @@ func Run(tty bool, comArray []string, res *subsystems.ResourceConfig) {
 		log.Error(err)
 	}
 
-	// create a new groupManager
 	cgroupManager := cgroups.NewCgroupManager("mydocker-cgroup")
 	defer cgroupManager.Destroy()
 	cgroupManager.Set(res)

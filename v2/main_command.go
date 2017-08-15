@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	log "github.com/Sirupsen/logrus"
 	"github.com/my-docker/v2/cgroups/subsystems"
 	"github.com/my-docker/v2/container"
@@ -20,6 +21,14 @@ var runCommand = cli.Command{
 			Name:  "m",
 			Usage: "memory limit",
 		},
+		cli.StringFlag{
+			Name:  "cpuset",
+			Usage: "cpuset limit",
+		},
+		cli.StringFlag{
+			Name:  "cpushare",
+			Usage: "cpushare limit",
+		},
 	},
 	Action: func(context *cli.Context) error {
 		if len(context.Args()) < 1 {
@@ -32,7 +41,10 @@ var runCommand = cli.Command{
 		tty := context.Bool("ti")
 		resConf := &subsystems.ResourceConfig{
 			MemoryLimit: context.String("m"),
+			CpuSet:      context.String("cpuset"),
+			CpuShare:    context.String("cpushare"),
 		}
+
 		Run(tty, cmdArray, resConf)
 		return nil
 	},
